@@ -12,6 +12,7 @@ import com.springgo.course.entities.Order;
 import com.springgo.course.entities.User;
 import com.springgo.course.repositories.OrderRepository;
 import com.springgo.course.repositories.UserRepository;
+import com.springgo.course.repositories.enums.OrderStatus;
 
 @Configuration
 @Profile("test")
@@ -29,9 +30,9 @@ public class TestConfig implements CommandLineRunner{
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		
 		
-		Order o1 = new Order(null, Instant.parse("2025-06-19T19:00:03Z"), u1);
-		Order o2 = new Order(null, Instant.parse("2025-08-22T18:00:57Z"), u2);
-		Order o3 = new Order(null, Instant.parse("2025-09-11T11:23:42Z"), u1);
+		Order o1 = new Order(null, Instant.parse("2025-06-19T19:00:03Z"), OrderStatus.PAID, u1);
+		Order o2 = new Order(null, Instant.parse("2025-08-22T18:00:57Z"), OrderStatus.WAITTING_PAYMENT, u2);
+		Order o3 = new Order(null, Instant.parse("2025-09-11T11:23:42Z"), OrderStatus.CANCELED, u1);
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
